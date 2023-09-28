@@ -64,15 +64,19 @@ const NewBookReview = () => {
         console.log(data);
         fetch('/bookreview/newreview', {
             method: 'POST',
-            body: data,
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify(data),
         });
     }
     return (
         <div>
             <div>
                 Rating will be inferred from the review using NLP in node module.
+                Submitted rating {rating}
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Book Name:
                     <input type="text" name="bookname" onChange={(e)=>setBookname(e.target.value)}/>
@@ -89,7 +93,7 @@ const NewBookReview = () => {
                 </label>
                 <br />
                 <input type="submit" value="Submit" />
-                
+
             </form>
         </div>
     );
