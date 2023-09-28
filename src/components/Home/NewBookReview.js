@@ -3,10 +3,20 @@
 import React from 'react';
 
 const NewBookReview = () => {
+    
+    const [bookname, setBookname] = React.useState('');
+    const [authorname, setAuthorname] = React.useState('');
+    const [review, setReview] = React.useState('');
+    const [rating, setRating] = React.useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.target);
+        const data = {
+            bookname: bookname,
+            bookauthor: authorname,
+            bookreview: review,
+            bookrating: rating
+        }
         console.log(data);
         fetch('/bookreview/newreview', {
             method: 'POST',
@@ -18,12 +28,12 @@ const NewBookReview = () => {
             <form>
                 <label>
                     Book Name:
-                    <input type="text" name="bookname" />
+                    <input type="text" name="bookname" onChange={(e)=>setBookname(e.target.value)}/>
                 </label>
                 <br />
                 <label>
                     Author Name:
-                    <input type="text" name="authorname" />
+                    <input type="text" name="authorname" onChange={(e)=>setAuthorname(e.target.value)}/>
                 </label>
                 <br />
                 <label>
@@ -33,7 +43,7 @@ const NewBookReview = () => {
                 <br />
                 <label>
                     Rating:
-                    <input type="text" name="rating" />
+                    <input type="text" name="rating" onChange={(e)=>setRating(e.target.value)}/>
                 </label>
                 <br />
                 <input type="submit" value="Submit" />

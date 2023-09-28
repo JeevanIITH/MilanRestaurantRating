@@ -1,13 +1,19 @@
 import React from 'react';
 import Year from './year';
-
+import NewBookReview from './NewBookReview';
 const Home = () => {
     return (
         <div>
             <div>
                 <h1>IITH Books Rating System</h1>
             </div>
+            <NewBookReview/>
             {/*horizontal list of buttons */}
+            <div>
+                <h2>
+                    Branch and Year wise list of books
+                </h2>
+            </div>
             <div className='branch-div'>
                 <button className='branch-button'>CSE</button>
                 <button className='branch-button'>ECE</button>
