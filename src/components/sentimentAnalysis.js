@@ -29,13 +29,13 @@ function getSentiment(str) {
 
     console.log(analyzed)
     if(analyzed < 0 ){
-        return 'Negative'
+        return 1
     }
     if(analyzed == 0 ){
-        return 'Neutral'
+        return 3
     }
     else{
-        return 'Positive'
+        return 4.5
     }
 
 }
