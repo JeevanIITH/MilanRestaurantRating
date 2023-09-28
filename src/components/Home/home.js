@@ -2,6 +2,20 @@ import React from 'react';
 import Year from './year';
 import NewBookReview from './NewBookReview';
 const Home = () => {
+
+    // fetch list of book details from '/all_books' and display them in a table
+    // each book details has bookname , authorname , rating , review
+    const [booklist, setBooklist] = React.useState([{}]);
+
+    React.useEffect(() => {
+    fetch('/all_books')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            setBooklist(data);
+        });
+    }
+    , []);
     return (
         <div>
             <div>
@@ -34,6 +48,30 @@ const Home = () => {
             </div>
 
             <Year />
+            <div className='center'>
+                <h2>
+                    List of books
+                    
+
+                </h2>
+                {/* display the booklist data in list using any template */}
+                <table>
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Rating</th>
+                        <th>Review</th>
+                    </tr>
+                    {booklist.map((book) => (
+                        <tr>
+                            <td>{book.name}</td>
+                            <td>{book.author}</td>
+                            <td>{book.rating}</td>
+                            <td>{book.review}</td>
+                        </tr>
+                    ))}
+                </table>
+                </div>
             
         </div>
     );
